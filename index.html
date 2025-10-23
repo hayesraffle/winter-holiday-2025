@@ -883,6 +883,7 @@
 
                 <div class="button-group">
                     <button class="fab" id="submitButton" onclick="submitVote()">Submit Vote</button>
+                    <button class="fab" id="editVoteButton" onclick="editVote()" style="display: none;">✏️ Edit My Vote</button>
                     <button class="fab" id="seeVotesButton" onclick="showVotes()" style="display: none;">👀 See All Votes</button>
                 </div>
                 <p id="voteStatus" style="margin-top: 12px; font-size: 14px; display: none;"></p>
@@ -1347,14 +1348,52 @@
             loadVotes();
         }
 
+        function editVote() {
+            const submitButton = document.getElementById('submitButton');
+            const editVoteButton = document.getElementById('editVoteButton');
+            const seeVotesButton = document.getElementById('seeVotesButton');
+            const statusEl = document.getElementById('voteStatus');
+
+            // Re-enable form for editing
+            hasVoted = false;
+
+            // Update button states
+            submitButton.classList.remove('success');
+            submitButton.textContent = 'Update Vote';
+            editVoteButton.style.display = 'none';
+
+            // Load previous vote data from localStorage
+            const previousVote = localStorage.getItem('userVote');
+            const previousName = localStorage.getItem('userName');
+            const previousComments = localStorage.getItem('userComments');
+
+            if (previousVote) {
+                // Pre-select the previous destination
+                const buttons = document.querySelectorAll('.vote-btn');
+                buttons.forEach(btn => {
+                    if (btn.textContent.includes(previousVote)) {
+                        selectVote(btn, previousVote);
+                    }
+                });
+            }
+
+            if (previousName) {
+                document.getElementById('voterName').value = previousName;
+            }
+
+            if (previousComments) {
+                document.getElementById('comments').value = previousComments;
+            }
+
+            statusEl.textContent = 'Make your changes and click "Update Vote"';
+            statusEl.style.color = 'var(--md-sys-color-primary)';
+            statusEl.style.display = 'block';
+        }
+
         async function submitVote() {
             const submitButton = document.getElementById('submitButton');
+            const editVoteButton = document.getElementById('editVoteButton');
             const seeVotesButton = document.getElementById('seeVotesButton');
-
-            // If already voted, don't submit again
-            if (hasVoted) {
-                return;
-            }
 
             const name = document.getElementById('voterName').value.trim();
             const comments = document.getElementById('comments').value.trim();
@@ -1388,19 +1427,24 @@
                 });
 
                 if (response.ok) {
-                    statusEl.textContent = '✅ Vote submitted successfully!';
+                    const isUpdate = hasVoted || localStorage.getItem('hasVoted') === 'true';
+                    statusEl.textContent = isUpdate ? '✅ Vote updated successfully!' : '✅ Vote submitted successfully!';
                     statusEl.style.color = 'var(--md-sys-color-success)';
                     statusEl.style.display = 'block';
 
-                    // Mark as voted
+                    // Mark as voted and store vote data for editing
                     hasVoted = true;
                     localStorage.setItem('hasVoted', 'true');
+                    localStorage.setItem('userVote', selectedDestination);
+                    localStorage.setItem('userName', name);
+                    localStorage.setItem('userComments', comments);
 
                     // Change submit button to success (green) and disable
                     submitButton.classList.add('success');
                     submitButton.textContent = '✅ Vote Submitted';
 
-                    // Show "See All Votes" button
+                    // Show "Edit My Vote" and "See All Votes" buttons
+                    editVoteButton.style.display = 'inline-block';
                     seeVotesButton.style.display = 'inline-block';
 
                     // Clear form
@@ -1427,9 +1471,11 @@
             if (localStorage.getItem('hasVoted') === 'true') {
                 hasVoted = true;
                 const submitButton = document.getElementById('submitButton');
+                const editVoteButton = document.getElementById('editVoteButton');
                 const seeVotesButton = document.getElementById('seeVotesButton');
                 submitButton.classList.add('success');
                 submitButton.textContent = '✅ Vote Submitted';
+                editVoteButton.style.display = 'inline-block';
                 seeVotesButton.style.display = 'inline-block';
             }
         });
