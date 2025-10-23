@@ -91,6 +91,28 @@ app.get('/api/votes/summary', async (req, res) => {
     }
 });
 
+// Delete a vote
+app.delete('/api/votes/:name', async (req, res) => {
+    try {
+        const { name } = req.params;
+        const data = await fs.readFile(VOTES_FILE, 'utf8');
+        const votes = JSON.parse(data);
+
+        const initialLength = votes.length;
+        const updatedVotes = votes.filter(v => v.name.toLowerCase() !== decodeURIComponent(name).toLowerCase());
+
+        if (updatedVotes.length === initialLength) {
+            return res.status(404).json({ error: 'Vote not found' });
+        }
+
+        await fs.writeFile(VOTES_FILE, JSON.stringify(updatedVotes, null, 2));
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Error deleting vote:', error);
+        res.status(500).json({ error: 'Failed to delete vote' });
+    }
+});
+
 const PORT = process.env.PORT || 3000;
 
 initVotes().then(() => {
