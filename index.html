@@ -376,12 +376,20 @@
             color: var(--md-sys-color-on-surface-variant);
         }
         
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 0 -24px;
+            padding: 0 24px;
+        }
+
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
             border-spacing: 0;
+            min-width: 800px;
         }
-        
+
         .comparison-table th {
             background: var(--md-sys-color-primary-container);
             color: var(--md-sys-color-on-primary-container);
@@ -390,7 +398,7 @@
             font-weight: 500;
             font-size: 14px;
         }
-        
+
         .comparison-table td {
             padding: 16px;
             background: var(--md-sys-color-surface);
@@ -570,18 +578,69 @@
             .container {
                 padding: 16px;
             }
-            
+
             .feature-list {
                 grid-template-columns: 1fr;
             }
-            
+
             .hero-card h2 {
                 font-size: 24px;
             }
-            
+
             .tab {
                 padding: 12px 16px;
                 font-size: 13px;
+            }
+
+            .table-wrapper {
+                margin: 0 -16px;
+                padding: 0 16px;
+            }
+
+            .comparison-table {
+                min-width: 700px;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 12px 8px;
+                font-size: 13px;
+            }
+
+            .carousel-container {
+                overflow-x: visible;
+                overflow-y: visible;
+                margin: 24px 0;
+            }
+
+            .carousel {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .carousel-card {
+                flex: none;
+                width: 100%;
+            }
+
+            .carousel-image {
+                height: 200px;
+            }
+
+            .carousel-content {
+                padding: 16px;
+            }
+
+            .voting-card {
+                padding: 24px 16px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .button-group .fab {
+                width: 100%;
             }
         }
         
@@ -604,6 +663,7 @@
             margin: 24px 0;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
+            scroll-snap-type: x mandatory;
         }
 
         .carousel-container::-webkit-scrollbar {
@@ -620,14 +680,16 @@
             flex: 0 0 350px;
             background: var(--md-sys-color-surface-variant);
             border-radius: 8px;
-            overflow: hidden;
             scroll-snap-align: start;
+            scroll-snap-stop: always;
         }
 
         .carousel-image {
             width: 100%;
             height: 220px;
             object-fit: cover;
+            border-radius: 8px 8px 0 0;
+            display: block;
         }
 
         .carousel-content {
@@ -656,6 +718,12 @@
             font-size: 14px;
             color: var(--md-sys-color-on-surface-variant);
             line-height: 1.6;
+            white-space: normal;
+            overflow: visible;
+            text-overflow: clip;
+            display: block;
+            max-height: none;
+            -webkit-line-clamp: unset;
         }
     </style>
 </head>
@@ -679,6 +747,7 @@
         <!-- OVERVIEW TAB -->
         <div class="content active">
             <div class="card" style="padding-top: 32px;">
+                <div class="table-wrapper">
                 <table class="comparison-table">
                     <thead>
                         <tr>
@@ -692,7 +761,7 @@
                     <tbody>
                         <tr>
                             <td><strong>Image</strong></td>
-                            <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Agua_transparente_de_la_Paz_Baja_California.jpg/500px-Agua_transparente_de_la_Paz_Baja_California.jpg" alt="La Paz bay transparent waters" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
+                            <td><img src="otra-playa-hermosa-en.jpg" alt="Beautiful beach in Baja California" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
                             <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Saguaro_cacti%2C_Saguaro_NP_%28RMD%29_%28ac324b3a-fb4b-4b06-b13e-1a08419520f8%29.jpg/500px-Saguaro_cacti%2C_Saguaro_NP_%28RMD%29_%28ac324b3a-fb4b-4b06-b13e-1a08419520f8%29.jpg" alt="Southwest desert" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
                             <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Templo_de_Santo_Domingo_de_Guzm%C3%A1n-_2023.jpg/500px-Templo_de_Santo_Domingo_de_Guzm%C3%A1n-_2023.jpg" alt="Oaxaca architecture" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
                             <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Beach_and_Ruins_at_Tulum.jpg/500px-Beach_and_Ruins_at_Tulum.jpg" alt="Tulum ruins" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
@@ -769,6 +838,7 @@
                         </tr>
                     </tbody>
                 </table>
+                </div>
             </div>
             
             <div class="info-card">
