@@ -1326,11 +1326,14 @@
                     const summaryDiv = document.getElementById('voteSummary');
 
                     let html = '<div style="display: grid; gap: 12px;">';
-                    data.votes.forEach(vote => {
+                    data.votes.forEach((vote, index) => {
                         html += `
-                            <div style="padding: 12px; background: var(--md-sys-color-surface-variant); border-radius: 8px;">
-                                <div style="font-weight: 500; margin-bottom: 4px;">${vote.name} → ${vote.destination}</div>
-                                ${vote.notes ? `<div style="font-size: 14px; color: var(--md-sys-color-on-surface-variant);">"${vote.notes}"</div>` : ''}
+                            <div style="padding: 12px; background: var(--md-sys-color-surface-variant); border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                                <div style="flex: 1;">
+                                    <div style="font-weight: 500; margin-bottom: 4px;">${vote.name} → ${vote.destination}</div>
+                                    ${vote.notes ? `<div style="font-size: 14px; color: var(--md-sys-color-on-surface-variant);">"${vote.notes}"</div>` : ''}
+                                </div>
+                                <button onclick="deleteVote('${vote.name}', '${vote.destination}')" style="background: var(--md-sys-color-error); color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; margin-left: 12px;">🗑️ Delete</button>
                             </div>
                         `;
                     });
@@ -1346,6 +1349,41 @@
 
         function showVotes() {
             loadVotes();
+        }
+
+        async function deleteVote(name, destination) {
+            if (!confirm(`Delete vote from ${name}?`)) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/votes/${encodeURIComponent(name)}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    // Reload votes to show updated list
+                    await loadVotes();
+
+                    // Show success message
+                    const statusEl = document.getElementById('voteStatus');
+                    statusEl.textContent = '✅ Vote deleted successfully!';
+                    statusEl.style.color = 'var(--md-sys-color-success)';
+                    statusEl.style.display = 'block';
+
+                    setTimeout(() => {
+                        statusEl.style.display = 'none';
+                    }, 3000);
+                } else {
+                    throw new Error('Failed to delete vote');
+                }
+            } catch (error) {
+                console.error('Error deleting vote:', error);
+                const statusEl = document.getElementById('voteStatus');
+                statusEl.textContent = '❌ Error deleting vote. Please try again.';
+                statusEl.style.color = 'var(--md-sys-color-error)';
+                statusEl.style.display = 'block';
+            }
         }
 
         function editVote() {
