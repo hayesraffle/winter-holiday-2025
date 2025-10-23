@@ -1321,10 +1321,10 @@
                 const response = await fetch('/api/votes/summary');
                 const data = await response.json();
 
-                if (data.votes && data.votes.length > 0) {
-                    const resultsDiv = document.getElementById('voteResults');
-                    const summaryDiv = document.getElementById('voteSummary');
+                const resultsDiv = document.getElementById('voteResults');
+                const summaryDiv = document.getElementById('voteSummary');
 
+                if (data.votes && data.votes.length > 0) {
                     let html = '<div style="display: grid; gap: 12px;">';
                     data.votes.forEach((vote, index) => {
                         html += `
@@ -1340,6 +1340,10 @@
                     html += '</div>';
 
                     summaryDiv.innerHTML = html;
+                    resultsDiv.style.display = 'block';
+                } else {
+                    // No votes - hide the results or show empty state
+                    summaryDiv.innerHTML = '<p style="color: var(--md-sys-color-on-surface-variant); text-align: center;">No votes yet. Be the first to vote!</p>';
                     resultsDiv.style.display = 'block';
                 }
             } catch (error) {
