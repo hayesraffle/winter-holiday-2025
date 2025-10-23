@@ -388,6 +388,7 @@
             border-collapse: collapse;
             border-spacing: 0;
             min-width: 800px;
+            table-layout: fixed;
         }
 
         .comparison-table th {
@@ -399,11 +400,26 @@
             font-size: 14px;
         }
 
+        .comparison-table th:first-child,
+        .comparison-table td:first-child {
+            width: 150px;
+        }
+
         .comparison-table td {
             padding: 16px;
             background: var(--md-sys-color-surface);
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             font-size: 14px;
+        }
+
+        .comparison-table img {
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), opacity 0.2s;
+        }
+
+        .comparison-table img:hover {
+            transform: scale(1.02);
+            opacity: 0.9;
         }
 
         .comparison-table tr:last-child td {
@@ -761,10 +777,10 @@
                     <tbody>
                         <tr>
                             <td><strong>Image</strong></td>
-                            <td><img src="otra-playa-hermosa-en.jpg" alt="Beautiful beach in Baja California" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
-                            <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Saguaro_cacti%2C_Saguaro_NP_%28RMD%29_%28ac324b3a-fb4b-4b06-b13e-1a08419520f8%29.jpg/500px-Saguaro_cacti%2C_Saguaro_NP_%28RMD%29_%28ac324b3a-fb4b-4b06-b13e-1a08419520f8%29.jpg" alt="Southwest desert" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
-                            <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Templo_de_Santo_Domingo_de_Guzm%C3%A1n-_2023.jpg/500px-Templo_de_Santo_Domingo_de_Guzm%C3%A1n-_2023.jpg" alt="Oaxaca architecture" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
-                            <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Beach_and_Ruins_at_Tulum.jpg/500px-Beach_and_Ruins_at_Tulum.jpg" alt="Tulum ruins" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
+                            <td><img src="otra-playa-hermosa-en.jpg" alt="Beautiful beach in Baja California" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" onclick="showTab(1)" title="Click to view Baja California details"></td>
+                            <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Saguaro_cacti%2C_Saguaro_NP_%28RMD%29_%28ac324b3a-fb4b-4b06-b13e-1a08419520f8%29.jpg/500px-Saguaro_cacti%2C_Saguaro_NP_%28RMD%29_%28ac324b3a-fb4b-4b06-b13e-1a08419520f8%29.jpg" alt="Southwest desert" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" onclick="showTab(2)" title="Click to view Southwest USA details"></td>
+                            <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Templo_de_Santo_Domingo_de_Guzm%C3%A1n-_2023.jpg/500px-Templo_de_Santo_Domingo_de_Guzm%C3%A1n-_2023.jpg" alt="Oaxaca architecture" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" onclick="showTab(3)" title="Click to view Oaxaca details"></td>
+                            <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Beach_and_Ruins_at_Tulum.jpg/500px-Beach_and_Ruins_at_Tulum.jpg" alt="Tulum ruins" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" onclick="showTab(4)" title="Click to view Tulum details"></td>
                         </tr>
                         <tr>
                             <td><strong>Best For</strong></td>
