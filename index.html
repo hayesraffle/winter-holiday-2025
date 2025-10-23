@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winter Break 2025 - Family Vacation Planning</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --md-sys-color-primary: #1a73e8;
+            --md-sys-color-on-primary: #FFFFFF;
+            --md-sys-color-primary-container: #f8f9fa;
+            --md-sys-color-on-primary-container: #3c4043;
+            --md-sys-color-secondary: #5f6368;
+            --md-sys-color-secondary-container: #f8f9fa;
+            --md-sys-color-tertiary: #1a73e8;
+            --md-sys-color-surface: #FFFFFF;
+            --md-sys-color-surface-variant: #f8f9fa;
+            --md-sys-color-on-surface: #3c4043;
+            --md-sys-color-on-surface-variant: #5f6368;
+            --md-sys-color-outline: #e8eaed;
+            --md-sys-color-error: #d93025;
+            --md-sys-color-error-container: #fce8e6;
+            --md-sys-color-success: #1e8e3e;
+            --md-sys-color-success-container: #e6f4ea;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #FFFFFF;
+            color: var(--md-sys-color-on-surface);
+            line-height: 1.6;
+        }
+
+        .app-bar {
+            background: #FFFFFF;
+            color: var(--md-sys-color-on-surface);
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--md-sys-color-outline);
+        }
+        
+        .app-bar h1 {
+            font-size: 28px;
+            font-weight: 400;
+            letter-spacing: 0;
+        }
+        
+        .app-bar p {
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        
+        .tabs-container {
+            background: var(--md-sys-color-surface);
+            margin-bottom: 0;
+            overflow: hidden;
+        }
+
+        .tabs {
+            display: flex;
+            background: var(--md-sys-color-surface);
+            overflow-x: auto;
+            border-bottom: 1px solid var(--md-sys-color-outline);
+        }
+        
+        .tab {
+            padding: 16px 24px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--md-sys-color-on-surface-variant);
+            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            letter-spacing: 0.1px;
+        }
+        
+        .tab:hover {
+            background: rgba(30, 136, 229, 0.08);
+        }
+        
+        .tab.active {
+            color: var(--md-sys-color-primary);
+            border-bottom: 2px solid var(--md-sys-color-primary);
+        }
+        
+        .content {
+            display: none;
+            animation: fadeIn 0.3s cubic-bezier(0.2, 0, 0, 1);
+        }
+        
+        .content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .card {
+            background: var(--md-sys-color-surface);
+            padding: 24px 0;
+            margin-bottom: 16px;
+        }
+
+        .card-elevated {
+            background: var(--md-sys-color-surface);
+        }
+
+        .hero-card {
+            background: #FFFFFF;
+            color: var(--md-sys-color-on-surface);
+            padding: 32px 0;
+            margin-bottom: 24px;
+        }
+
+        .hero-card h2 {
+            font-size: 32px;
+            font-weight: 400;
+            margin-bottom: 8px;
+            letter-spacing: 0;
+            color: var(--md-sys-color-on-surface);
+        }
+
+        .hero-card .subtitle {
+            font-size: 16px;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .summary-card {
+            background: var(--md-sys-color-surface-variant);
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        .summary-card:hover {
+            background: #f0f0f0;
+        }
+        
+        .summary-card h3 {
+            color: var(--md-sys-color-primary);
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        
+        .summary-card p {
+            font-size: 14px;
+            margin: 8px 0;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+        
+        .summary-card strong {
+            color: var(--md-sys-color-on-surface);
+        }
+        
+        .chip {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+            margin: 4px;
+            background: var(--md-sys-color-surface-variant);
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .chip.success {
+            background: #e6f4ea;
+            color: #1e8e3e;
+        }
+
+        .chip.warning {
+            background: #fef7e0;
+            color: #ea8600;
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+            margin: 24px 0;
+        }
+        
+        .image-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 200px;
+            background: var(--md-sys-color-surface-variant);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .image-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+        
+        .feature-item {
+            background: var(--md-sys-color-surface-variant);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .feature-item.success {
+            background: #f8fdf9;
+        }
+
+        .feature-item.warning {
+            background: #fffbf5;
+        }
+        
+        .feature-item h3 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        
+        .feature-item ul {
+            list-style: none;
+            font-size: 14px;
+        }
+        
+        .feature-item li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+        
+        .feature-item.success li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--md-sys-color-success);
+            font-weight: bold;
+        }
+        
+        .feature-item.warning li::before {
+            content: "⚠";
+            position: absolute;
+            left: 0;
+        }
+        
+        .button-filled {
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.15);
+            letter-spacing: 0.1px;
+        }
+        
+        .button-filled:hover {
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .button-filled:active {
+            transform: scale(0.98);
+        }
+        
+        .button-outlined {
+            background: transparent;
+            color: var(--md-sys-color-primary);
+            border: 1px solid var(--md-sys-color-outline);
+            padding: 12px 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+        }
+        
+        .button-outlined:hover {
+            background: rgba(30, 136, 229, 0.08);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 24px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 16px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--md-sys-color-primary);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 32px;
+            background: var(--md-sys-color-surface-variant);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 24px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--md-sys-color-primary);
+            border: 3px solid var(--md-sys-color-surface);
+        }
+        
+        .timeline-label {
+            display: inline-block;
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        .timeline-item h4 {
+            font-size: 18px;
+            font-weight: 500;
+            margin: 8px 0;
+            color: var(--md-sys-color-on-surface);
+        }
+        
+        .timeline-item p {
+            font-size: 14px;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        
+        .comparison-table th {
+            background: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            padding: 16px;
+            text-align: left;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .comparison-table td {
+            padding: 16px;
+            background: var(--md-sys-color-surface);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .link-list {
+            background: var(--md-sys-color-surface-variant);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        
+        .link-list h3 {
+            color: var(--md-sys-color-on-primary-container);
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        
+        .link-item {
+            margin: 12px 0;
+        }
+        
+        .link-item a {
+            color: var(--md-sys-color-primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.2s;
+        }
+        
+        .link-item a:hover {
+            color: var(--md-sys-color-on-primary-container);
+        }
+        
+        .link-item a::after {
+            content: "→";
+            margin-left: 8px;
+            transition: transform 0.2s;
+        }
+        
+        .link-item a:hover::after {
+            transform: translateX(4px);
+        }
+        
+        .info-card {
+            background: var(--md-sys-color-surface-variant);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .info-card h3 {
+            color: var(--md-sys-color-on-surface);
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .info-card p {
+            font-size: 14px;
+            margin: 8px 0;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+        
+        .voting-card {
+            background: var(--md-sys-color-surface-variant);
+            color: var(--md-sys-color-on-surface);
+            padding: 32px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .voting-card h3 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: var(--md-sys-color-on-surface);
+        }
+        
+        .vote-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .vote-btn {
+            padding: 16px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            border: none;
+            background: #FFFFFF;
+            color: var(--md-sys-color-on-surface);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        .vote-btn:hover {
+            background: var(--md-sys-color-surface-variant);
+        }
+
+        .vote-btn.selected {
+            background: var(--md-sys-color-primary);
+            color: white;
+        }
+        
+        .text-field {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            background: #FFFFFF;
+            color: var(--md-sys-color-on-surface);
+            font-size: 14px;
+            font-family: 'Roboto', sans-serif;
+            min-height: 120px;
+            resize: vertical;
+            margin-top: 20px;
+        }
+
+        .text-field::placeholder {
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .text-field:focus {
+            outline: 2px solid var(--md-sys-color-primary);
+        }
+        
+        .fab {
+            background: var(--md-sys-color-primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+            margin-top: 20px;
+        }
+
+        .fab:hover {
+            background: #1557b0;
+        }
+        
+        .fab:active {
+            transform: scale(0.98);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+            
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-card h2 {
+                font-size: 24px;
+            }
+            
+            .tab {
+                padding: 12px 16px;
+                font-size: 13px;
+            }
+        }
+        
+        .section-header {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 32px 0 16px 0;
+            color: var(--md-sys-color-on-surface);
+        }
+        
+        .divider {
+            height: 1px;
+            background: var(--md-sys-color-outline);
+            margin: 24px 0;
+        }
+
+        .carousel-container {
+            overflow-x: auto;
+            overflow-y: hidden;
+            margin: 24px 0;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .carousel-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel {
+            display: flex;
+            gap: 16px;
+            padding: 8px 0;
+        }
+
+        .carousel-card {
+            flex: 0 0 350px;
+            background: var(--md-sys-color-surface-variant);
+            border-radius: 8px;
+            overflow: hidden;
+            scroll-snap-align: start;
+        }
+
+        .carousel-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .carousel-content {
+            padding: 20px;
+        }
+
+        .carousel-day {
+            display: inline-block;
+            background: var(--md-sys-color-primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .carousel-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--md-sys-color-on-surface);
+        }
+
+        .carousel-description {
+            font-size: 14px;
+            color: var(--md-sys-color-on-surface-variant);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-bar">
+        <h1>🌎 Winter Break 2025 Family Adventure</h1>
+        <p>December 14-21 • Paloma, Anika, Mom & Dad</p>
+    </div>
+    
+    <div class="container">
+        <div class="tabs-container">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab(0)">Overview & Vote</button>
+                <button class="tab" onclick="showTab(1)">Baja California</button>
+                <button class="tab" onclick="showTab(2)">Southwest USA</button>
+                <button class="tab" onclick="showTab(3)">Oaxaca</button>
+                <button class="tab" onclick="showTab(4)">Tulum</button>
+            </div>
+        </div>
+        
+        <!-- OVERVIEW TAB -->
+        <div class="content active">
+            <div class="card" style="padding-top: 32px;">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Baja California</th>
+                            <th>Southwest USA</th>
+                            <th>Oaxaca</th>
+                            <th>Tulum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Image</strong></td>
+                            <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Todos_Santos%2C_Mexico_%28Unsplash%29.jpg/500px-Todos_Santos%2C_Mexico_%28Unsplash%29.jpg" alt="Baja California coastline" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
+                            <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Saguaro_cacti%2C_Saguaro_NP_%28RMD%29_%28ac324b3a-fb4b-4b06-b13e-1a08419520f8%29.jpg/500px-Saguaro_cacti%2C_Saguaro_NP_%28RMD%29_%28ac324b3a-fb4b-4b06-b13e-1a08419520f8%29.jpg" alt="Southwest desert" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
+                            <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Templo_de_Santo_Domingo_de_Guzm%C3%A1n-_2023.jpg/500px-Templo_de_Santo_Domingo_de_Guzm%C3%A1n-_2023.jpg" alt="Oaxaca architecture" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
+                            <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Beach_and_Ruins_at_Tulum.jpg/500px-Beach_and_Ruins_at_Tulum.jpg" alt="Tulum ruins" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Best For</strong></td>
+                            <td>Unique wildlife, cultural immersion</td>
+                            <td>True middle ground, history</td>
+                            <td>Food culture, indigenous arts</td>
+                            <td>Mayan ruins, beach time</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Travel Time</strong></td>
+                            <td>2-3h from CA<br>6-7h from DC</td>
+                            <td>4-5h from both coasts</td>
+                            <td>6-8h from CA<br>5-7h from DC</td>
+                            <td>6-7h from CA<br>4-5h from DC</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vibe</strong></td>
+                            <td>Intimate glamping + marine life</td>
+                            <td>Cultural deep-dive + hiking</td>
+                            <td>Culinary + cultural immersion</td>
+                            <td>Archaeological + relaxation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tags</strong></td>
+                            <td><span class="chip success">Top Pick</span> <span class="chip">December Peak</span></td>
+                            <td><span class="chip">Most Accessible</span> <span class="chip">Great Hiking</span></td>
+                            <td><span class="chip">UNESCO Site</span> <span class="chip">Foodie Paradise</span></td>
+                            <td><span class="chip warning">Most Touristy</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Expert Guides</strong></td>
+                            <td>✅ Naturalists</td>
+                            <td>✅ Historians</td>
+                            <td>✅ Archaeologists</td>
+                            <td>⚠️ Limited</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hiking Quality</strong></td>
+                            <td>✅ Desert/Mountain</td>
+                            <td>✅✅ Excellent</td>
+                            <td>✅ Cloud Forest</td>
+                            <td>⚠️ Limited</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cultural Depth</strong></td>
+                            <td>✅ Family-to-family</td>
+                            <td>✅ Museums/Sites</td>
+                            <td>✅✅ Immersive</td>
+                            <td>✅ Archaeological</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Food Scene</strong></td>
+                            <td>✅ Cooking classes</td>
+                            <td>✅ Southwest cuisine</td>
+                            <td>✅✅ World-class</td>
+                            <td>✅ Good options</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Unique Factor</strong></td>
+                            <td>🐋 Whale sharks</td>
+                            <td>🏜️ Ancient pueblos</td>
+                            <td>🎨 UNESCO heritage</td>
+                            <td>💦 Cenotes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>December Timing</strong></td>
+                            <td>✅✅ Perfect</td>
+                            <td>✅ Excellent</td>
+                            <td>✅ Great</td>
+                            <td>✅ Good</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="info-card">
+                <h3>🎯 Expert Recommendation</h3>
+                <p><strong>Top Choice: Baja California Sur</strong></p>
+                <p>After extensive research, Baja perfectly matches your family's preferences: conversational activities (kayaking/snorkeling together), expert naturalist guides, intimate cultural experiences with local families, spectacular hiking, and once-in-a-lifetime wildlife encounters (swimming with whale sharks!). December is peak season with ideal weather, and it's easiest from California where 3 of 4 family members are based.</p>
+                <p style="margin-top: 12px;"><strong>Strong Runner-up: Southwest USA</strong> — True geographic middle ground, excellent hiking, deep cultural/historical immersion.</p>
+            </div>
+
+            <div class="voting-card">
+                <h3>🗳️ Cast Your Vote</h3>
+                <p style="margin-bottom: 20px; color: var(--md-sys-color-on-surface-variant);">Which destination excites you most?</p>
+
+                <div id="voteResults" style="margin-bottom: 24px; padding: 16px; background: white; border-radius: 8px; display: none;">
+                    <h4 style="margin-bottom: 12px; font-size: 16px;">Current Votes:</h4>
+                    <div id="voteSummary"></div>
+                </div>
+
+                <div class="vote-options">
+                    <button class="vote-btn" onclick="selectVote(this, 'Baja California')">
+                        🏝️ Baja California
+                    </button>
+                    <button class="vote-btn" onclick="selectVote(this, 'Southwest USA')">
+                        🌵 Southwest USA
+                    </button>
+                    <button class="vote-btn" onclick="selectVote(this, 'Oaxaca')">
+                        🎨 Oaxaca
+                    </button>
+                    <button class="vote-btn" onclick="selectVote(this, 'Tulum')">
+                        🏖️ Tulum
+                    </button>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <label style="display: block; margin-bottom: 12px; font-weight: 500;">
+                        Your name:
+                    </label>
+                    <input type="text" id="voterName" class="text-field" placeholder="Enter your name" style="min-height: auto; height: 48px;">
+                </div>
+
+                <div style="margin-top: 16px;">
+                    <label style="display: block; margin-bottom: 12px; font-weight: 500;">
+                        Thoughts, questions, or concerns (optional):
+                    </label>
+                    <textarea id="comments" class="text-field" placeholder="E.g., 'Baja sounds amazing but worried about the glamping aspect...'"></textarea>
+                </div>
+
+                <button class="fab" onclick="submitVote()">Submit Vote</button>
+                <p id="voteStatus" style="margin-top: 12px; font-size: 14px; display: none;"></p>
+            </div>
+        </div>
+        
+        <!-- BAJA TAB -->
+        <div class="content">
+            <div class="card">
+                <h3 class="section-header">Why Baja is Special</h3>
+                <p>Baja offers once-in-a-lifetime marine wildlife encounters, intimate cultural experiences with local ranching families, and the perfect balance of adventure and comfort through luxury glamping. December is ideal with perfect weather (70s-80s°F) and active whale shark season. The Sea of Cortez, called "the world's aquarium" by Jacques Cousteau, hosts 39% of the world's marine mammal species.</p>
+            </div>
+
+            <div class="card">
+                <h3 class="section-header">Your 7-Day Adventure</h3>
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Todos_Santos%2C_Mexico_%28Unsplash%29.jpg/500px-Todos_Santos%2C_Mexico_%28Unsplash%29.jpg" alt="Todos Santos coastal town" class="carousel-image">
+                            <div class="carousel-content">
+                                <span class="carousel-day">Days 1-2</span>
+                                <h4 class="carousel-title">Todos Santos - Artist Colony</h4>
+                                <p class="carousel-description">Boutique hotel with ocean views • Historical walking tour • Cooking class or surfing • Art galleries & Mission Church • Taco crawls with locals</p>
+                                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--md-sys-color-outline);">
+                                    <a href="https://www.loscolibris.com/" target="_blank" style="color: var(--md-sys-color-primary); text-decoration: none; font-size: 13px; font-weight: 500;">Los Colibris Casitas →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Mountains_and_Beaches_of_Baja_California_-_panoramio.jpg/500px-Mountains_and_Beaches_of_Baja_California_-_panoramio.jpg" alt="Baja California mountains" class="carousel-image">
+                            <div class="carousel-content">
+                                <span class="carousel-day">Days 3-4</span>
+                                <h4 class="carousel-title">Mountain Glamping</h4>
+                                <p class="carousel-description">Sierra La Laguna Reserve • Sunrise birding • Hiking to waterfalls • Tortilla-making with ranch family • Stargazing with zero light pollution</p>
+                                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--md-sys-color-outline);">
+                                    <a href="https://adventuresmithexplorations.com/trips/baja/camp-cecil-adventure/" target="_blank" style="color: var(--md-sys-color-primary); text-decoration: none; font-size: 13px; font-weight: 500;">Camp Cecil Booking →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Zalophus_californianus.jpg/500px-Zalophus_californianus.jpg" alt="California sea lion" class="carousel-image">
+                            <div class="carousel-content">
+                                <span class="carousel-day">Days 5-6</span>
+                                <h4 class="carousel-title">Island Paradise</h4>
+                                <p class="carousel-description">UNESCO Site • Snorkel with sea lions (THE highlight!) • Kayak together • Paddleboard with sea turtles • Beach camping • Island cooking class</p>
+                                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--md-sys-color-outline);">
+                                    <a href="https://en.wikipedia.org/wiki/Esp%C3%ADritu_Santo_Island" target="_blank" style="color: var(--md-sys-color-primary); text-decoration: none; font-size: 13px; font-weight: 500;">Espíritu Santo UNESCO Info →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Whale_Shark_%28Rhincodon_typus%29_with_open_mouth_in_La_Paz%2C_Mexico.jpg/500px-Whale_Shark_%28Rhincodon_typus%29_with_open_mouth_in_La_Paz%2C_Mexico.jpg" alt="Whale shark in La Paz" class="carousel-image">
+                            <div class="carousel-content">
+                                <span class="carousel-day">Day 7</span>
+                                <h4 class="carousel-title">Whale Shark Swim</h4>
+                                <p class="carousel-description">Early morning swim with whale sharks in La Paz Bay • La Paz city tour • Farewell dinner in Todos Santos</p>
+                                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--md-sys-color-outline);">
+                                    <a href="https://tosea.net/" target="_blank" style="color: var(--md-sys-color-primary); text-decoration: none; font-size: 13px; font-weight: 500;">TOSEA - Tour Operator →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-list">
+                <div class="feature-item success">
+                    <h3>Perfect Match ✓</h3>
+                    <ul>
+                        <li>Swim with 30-foot whale sharks</li>
+                        <li>Snorkel with playful sea lions</li>
+                        <li>PhD-level naturalist guides</li>
+                        <li>Luxury glamping (real beds!)</li>
+                        <li>Cultural immersion with families</li>
+                        <li>Kayaking together side-by-side</li>
+                        <li>Conservation-focused tourism</li>
+                        <li>Easy from California (2-3h)</li>
+                    </ul>
+                </div>
+                <div class="feature-item warning">
+                    <h3>Considerations</h3>
+                    <ul>
+                        <li>Longer travel from DC (6-7h)</li>
+                        <li>Glamping vs. traditional hotels</li>
+                        <li>Book soon (limited capacity)</li>
+                        <li>Higher price point</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SOUTHWEST TAB -->
+        <div class="content">
+            <div class="card">
+                <h3 class="section-header">Why Southwest is Special</h3>
+                <p>The Southwest offers the perfect geographic "meeting in the middle" with direct flights under 5 hours from both coasts. December is ideal with comfortable 60s-70s°F weather perfect for hiking without summer's scorching heat. Experience rich cultural layers: ancient Puebloan civilization, Spanish colonial architecture, and vibrant contemporary art scenes all in one trip.</p>
+            </div>
+
+            <div class="card">
+                <h3 class="section-header">Your 7-Day Adventure</h3>
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Saguaro_cacti%2C_Saguaro_NP_%28RMD%29_%28ac324b3a-fb4b-4b06-b13e-1a08419520f8%29.jpg/500px-Saguaro_cacti%2C_Saguaro_NP_%28RMD%29_%28ac324b3a-fb4b-4b06-b13e-1a08419520f8%29.jpg" alt="Saguaro cacti at sunset" class="carousel-image">
+                            <div class="carousel-content">
+                                <span class="carousel-day">Days 1-3</span>
+                                <h4 class="carousel-title">Tucson & Southern Arizona</h4>
+                                <p class="carousel-description">Saguaro National Park desert hiking • Mission San Xavier del Bac with expert guide • Tubac artist colony exploration • Sonoran desert ecology tours • Cooking class: traditional Sonoran cuisine</p>
+                                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--md-sys-color-outline);">
+                                    <a href="https://www.nps.gov/sagu/index.htm" target="_blank" style="color: var(--md-sys-color-primary); text-decoration: none; font-size: 13px; font-weight: 500;">Saguaro National Park →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Adobe_in_Santa_Fe_at_the_Plaza_-_Hotel_Inn_and_Spa_at_Loretto.JPG/500px-Adobe_in_Santa_Fe_at_the_Plaza_-_Hotel_Inn_and_Spa_at_Loretto.JPG" alt="Santa Fe adobe architecture" class="carousel-image">
+                            <div class="carousel-content">
+                                <span class="carousel-day">Days 4-5</span>
+                                <h4 class="carousel-title">Santa Fe, New Mexico</h4>
+                                <p class="carousel-description">Adobe architecture walking tours with historians • Native American pueblo visits (Taos or San Ildefonso) • Canyon Road art gallery district • Traditional New Mexican cooking • Museum of International Folk Art</p>
+                                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--md-sys-color-outline);">
+                                    <a href="https://www.contexttravel.com/regions/united-states-tours" target="_blank" style="color: var(--md-sys-color-primary); text-decoration: none; font-size: 13px; font-weight: 500;">Context Travel Expert Guides →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Albuquerque_Cityscape.JPG/500px-Albuquerque_Cityscape.JPG" alt="Albuquerque landscapes" class="carousel-image">
+                            <div class="carousel-content">
+                                <span class="carousel-day">Days 6-7</span>
+                                <h4 class="carousel-title">Albuquerque & Surroundings</h4>
+                                <p class="carousel-description">Petroglyph National Monument hikes • Old Town historical tours • Sandia Peak Tramway (panoramic views) • Local market visits • Final farewell dinner</p>
+                                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--md-sys-color-outline);">
+                                    <a href="https://www.southwestdiscoveries.com/" target="_blank" style="color: var(--md-sys-color-primary); text-decoration: none; font-size: 13px; font-weight: 500;">Southwest Discoveries →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-list">
+                <div class="feature-item success">
+                    <h3>Perfect Match ✓</h3>
+                    <ul>
+                        <li>TRUE geographic middle ground</li>
+                        <li>Excellent conversational hiking</li>
+                        <li>Expert historian guides available</li>
+                        <li>Deep cultural learning</li>
+                        <li>December is perfect season</li>
+                        <li>Established tour infrastructure</li>
+                        <li>Exceptional New Mexican cuisine</li>
+                        <li>Easy regional logistics</li>
+                    </ul>
+                </div>
+                <div class="feature-item warning">
+                    <h3>Considerations</h3>
+                    <ul>
+                        <li>Less unique than Baja wildlife</li>
+                        <li>Traditional hotels vs. glamping</li>
+                        <li>Cultural learning via sites</li>
+                        <li>Need to coordinate multiple guides</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- OAXACA TAB -->
+        <div class="content">
+            <div class="card">
+                <h3 class="section-header">Why Oaxaca is Special</h3>
+                <p>Oaxaca offers unparalleled cultural depth with UNESCO World Heritage designation, world-renowned cuisine (recognized as Intangible Cultural Heritage), and authentic indigenous Zapotec traditions still practiced daily. Expert guides include archaeologists, anthropologists, and indigenous community members. The food alone is worth the trip—Oaxaca is considered one of the world's great culinary destinations.</p>
+            </div>
+
+            <div class="card">
+                <h3 class="section-header">Your 7-Day Adventure</h3>
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Templo_de_Santo_Domingo_de_Guzm%C3%A1n-_2023.jpg/500px-Templo_de_Santo_Domingo_de_Guzm%C3%A1n-_2023.jpg" alt="Oaxaca city architecture" class="carousel-image">
+                            <div class="carousel-content">
+                                <span class="carousel-day">Days 1-2</span>
+                                <h4 class="carousel-title">Oaxaca City</h4>
+                                <p class="carousel-description">UNESCO heritage center • Templo de Santo Domingo • Cooking class with local family • Mercado Benito Juárez exploration • Museum Rufino Tamayo • Evening mole tasting</p>
+                                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--md-sys-color-outline);">
+                                    <a href="https://whc.unesco.org/en/list/415/" target="_blank" style="color: var(--md-sys-color-primary); text-decoration: none; font-size: 13px; font-weight: 500;">UNESCO World Heritage Info →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Monte_Alb%C3%A1n_archeological_site%2C_Oaxaca.jpg/500px-Monte_Alb%C3%A1n_archeological_site%2C_Oaxaca.jpg" alt="Monte Alban archaeological site" class="carousel-image">
+                            <div class="carousel-content">
+                                <span class="carousel-day">Days 3-4</span>
+                                <h4 class="carousel-title">Central Valleys</h4>
+                                <p class="carousel-description">Monte Albán archaeological site with expert • Mitla ceremonial center • Teotitlán del Valle weaving workshops • Mezcal distillery tours • Hierve el Agua mineral springs</p>
+                                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--md-sys-color-outline);">
+                                    <a href="https://discover-oaxaca.com/" target="_blank" style="color: var(--md-sys-color-primary); text-decoration: none; font-size: 13px; font-weight: 500;">Discover Oaxaca Tours →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Cloud_forest_vegetation_in_El_Cielo_Biosphere_Reserve%2C_24_September_2003.jpg/500px-Cloud_forest_vegetation_in_El_Cielo_Biosphere_Reserve%2C_24_September_2003.jpg" alt="Cloud forest vegetation" class="carousel-image">
+                            <div class="carousel-content">
+                                <span class="carousel-day">Days 5-7</span>
+                                <h4 class="carousel-title">Sierra Norte Cloud Forests</h4>
+                                <p class="carousel-description">Pueblos Mancomunados community trails • Multi-day cloud forest hiking • Village homestays • Traditional meals with Zapotec families • Community-run ecotourism</p>
+                                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--md-sys-color-outline);">
+                                    <a href="https://coyoteaventuras.com/" target="_blank" style="color: var(--md-sys-color-primary); text-decoration: none; font-size: 13px; font-weight: 500;">Coyote Aventuras →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-list">
+                <div class="feature-item success">
+                    <h3>Perfect Match ✓</h3>
+                    <ul>
+                        <li>Extraordinary food culture</li>
+                        <li>Deep Zapotec traditions</li>
+                        <li>Archaeologist/anthropologist guides</li>
+                        <li>Home-based cooking classes</li>
+                        <li>Sierra Norte cloud forest hiking</li>
+                        <li>Artisan workshops (weaving, pottery)</li>
+                        <li>Monte Albán & Mitla ruins</li>
+                        <li>More authentic than Tulum</li>
+                    </ul>
+                </div>
+                <div class="feature-item warning">
+                    <h3>Considerations</h3>
+                    <ul>
+                        <li>Longer travel (6-8h with connections)</li>
+                        <li>Less outdoor adventure focus</li>
+                        <li>More cultural vs. nature</li>
+                        <li>Altitude adjustment (7,000 ft)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TULUM TAB -->
+        <div class="content">
+            <div class="card">
+                <h3 class="section-header">Why Tulum Could Work</h3>
+                <p>Tulum offers spectacular Mayan archaeological sites perched dramatically on Caribbean cliffs, unique cenote swimming experiences in underground caves, and warm December weather. The food scene has improved significantly, and some authentic cooking classes are available. Easier from DC than California (4-5 hours vs. 6-7 hours).</p>
+            </div>
+
+            <div class="card">
+                <h3 class="section-header">Your 7-Day Adventure</h3>
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Beach_and_Ruins_at_Tulum.jpg/500px-Beach_and_Ruins_at_Tulum.jpg" alt="Tulum ruins overlooking Caribbean" class="carousel-image">
+                            <div class="carousel-content">
+                                <span class="carousel-day">Days 1-2</span>
+                                <h4 class="carousel-title">Tulum</h4>
+                                <p class="carousel-description">Tulum archaeological site tour • Beach time at stunning coastline • Cooking class with local family • Art galleries & restaurants • Evening food tour</p>
+                                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--md-sys-color-outline);">
+                                    <a href="https://www.inah.gob.mx/zonas/146-zona-arqueologica-de-tulum" target="_blank" style="color: var(--md-sys-color-primary); text-decoration: none; font-size: 13px; font-weight: 500;">Tulum Archaeological Zone →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Cenote-ik-kil.png/500px-Cenote-ik-kil.png" alt="Cenote Ik Kil clear water" class="carousel-image">
+                            <div class="carousel-content">
+                                <span class="carousel-day">Days 3-4</span>
+                                <h4 class="carousel-title">Mayan Sites & Cenotes</h4>
+                                <p class="carousel-description">Cobá ruins (climbable pyramid!) • Gran Cenote swimming • Dos Ojos cenote snorkeling • Mayan village cultural visit • Traditional cooking demonstration</p>
+                                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--md-sys-color-outline);">
+                                    <a href="https://www.mexicokantours.com/" target="_blank" style="color: var(--md-sys-color-primary); text-decoration: none; font-size: 13px; font-weight: 500;">Mexico Kan Tours →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Caribbean_coast_in_Mexico.jpg/500px-Caribbean_coast_in_Mexico.jpg" alt="Caribbean coast Mexico" class="carousel-image">
+                            <div class="carousel-content">
+                                <span class="carousel-day">Days 5-6</span>
+                                <h4 class="carousel-title">Sian Ka'an Biosphere</h4>
+                                <p class="carousel-description">Sian Ka'an UNESCO reserve • Boat tours through mangroves • Snorkeling in channels • Wildlife viewing (manatees, dolphins) • Ancient Mayan canal float</p>
+                                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--md-sys-color-outline);">
+                                    <a href="https://www.adventure-life.com/mexico/quintana-roo/tulum/tours/cultural" target="_blank" style="color: var(--md-sys-color-primary); text-decoration: none; font-size: 13px; font-weight: 500;">Adventure Life Tours →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Pyramid_of_Kukulkan_Chichen_Itza_01.JPG/500px-Pyramid_of_Kukulkan_Chichen_Itza_01.JPG" alt="Chichen Itza pyramid" class="carousel-image">
+                            <div class="carousel-content">
+                                <span class="carousel-day">Day 7</span>
+                                <h4 class="carousel-title">Chichen Itza</h4>
+                                <p class="carousel-description">Day trip to Seven Wonders of World • Guided archaeological tour • Cenote Ik Kil visit • Valladolid colonial town</p>
+                                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--md-sys-color-outline);">
+                                    <a href="https://www.eatingwithcarmen.com/" target="_blank" style="color: var(--md-sys-color-primary); text-decoration: none; font-size: 13px; font-weight: 500;">Eating With Carmen →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-list">
+                <div class="feature-item success">
+                    <h3>Strengths ✓</h3>
+                    <ul>
+                        <li>Iconic Mayan ruins (Tulum, Chichen Itza)</li>
+                        <li>Unique cenote swimming</li>
+                        <li>Warm beach weather in December</li>
+                        <li>Good food scene emerging</li>
+                        <li>Easier from DC (4-5h)</li>
+                        <li>Archaeological learning</li>
+                        <li>Cobá pyramid you can climb</li>
+                    </ul>
+                </div>
+                <div class="feature-item warning">
+                    <h3>Limitations</h3>
+                    <ul>
+                        <li>More touristy/crowded</li>
+                        <li>Context Travel not available</li>
+                        <li>Limited hiking opportunities</li>
+                        <li>Harder from California (6-7h)</li>
+                        <li>Beach separates vs. groups</li>
+                        <li>Less cultural depth than Oaxaca</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- VOTING TAB -->
+        <div class="content">
+            <div class="card hero-card">
+                <h2>✅ Cast Your Vote</h2>
+                <p class="subtitle">Let's decide together as a family</p>
+            </div>
+            
+            <div class="voting-card">
+                <h3>🗳️ Which destination excites you most?</h3>
+                <p style="margin-bottom: 20px; opacity: 0.9;">Click your top choice below:</p>
+                
+                <div class="vote-options">
+                    <button class="vote-btn" onclick="selectVote(this, 'baja')">
+                        🏝️ Baja California
+                    </button>
+                    <button class="vote-btn" onclick="selectVote(this, 'southwest')">
+                        🌵 Southwest USA
+                    </button>
+                    <button class="vote-btn" onclick="selectVote(this, 'oaxaca')">
+                        🎨 Oaxaca
+                    </button>
+                    <button class="vote-btn" onclick="selectVote(this, 'tulum')">
+                        🏖️ Tulum
+                    </button>
+                </div>
+                
+                <div style="margin-top: 24px;">
+                    <label style="display: block; margin-bottom: 12px; font-weight: 500;">
+                        Share your thoughts, questions, or concerns:
+                    </label>
+                    <textarea id="comments" class="text-field" placeholder="E.g., 'Baja sounds amazing but worried about the glamping aspect...' or 'I'd love to swim with whale sharks!' or 'Can we do more hiking in Oaxaca?'"></textarea>
+                </div>
+                
+                <button class="fab" onclick="submitVote()">📧 Email My Vote</button>
+            </div>
+            
+            <div class="card">
+                <h3 class="section-header">Quick Decision Framework</h3>
+                <div style="display: grid; gap: 16px; margin-top: 16px;">
+                    <div class="feature-item">
+                        <h3>Choose Baja if...</h3>
+                        <p>You want once-in-a-lifetime wildlife encounters and are excited about glamping</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Choose Southwest if...</h3>
+                        <p>You want true geographic middle ground and deep cultural/historical learning</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Choose Oaxaca if...</h3>
+                        <p>Food culture is your top priority and you want the deepest cultural immersion</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Choose Tulum if...</h3>
+                        <p>You prefer beach time and archaeological sites over pure adventure</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="section-header">Questions to Discuss</h3>
+                <ul style="margin-left: 20px; margin-top: 16px; font-size: 14px; line-height: 1.8;">
+                    <li>Are we all comfortable with glamping (luxury tents with real beds) vs. traditional hotels?</li>
+                    <li>How important is minimizing Anika's travel time from DC?</li>
+                    <li>Do we want maximum adventure or a mix of activity and relaxation?</li>
+                    <li>What's our budget comfort level? ($10k-$21k range)</li>
+                    <li>Who's most excited about which specific activities?</li>
+                    <li>Any concerns about physical activity levels or dietary restrictions?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showTab(index) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.content');
+            
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('active');
+                    contents[i].classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                    contents[i].classList.remove('active');
+                }
+            });
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        let selectedDestination = '';
+
+        function selectVote(button, destination) {
+            document.querySelectorAll('.vote-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+
+            button.classList.add('selected');
+            selectedDestination = destination;
+        }
+
+        async function loadVotes() {
+            try {
+                const response = await fetch('/api/votes/summary');
+                const data = await response.json();
+
+                if (data.votes && data.votes.length > 0) {
+                    const resultsDiv = document.getElementById('voteResults');
+                    const summaryDiv = document.getElementById('voteSummary');
+
+                    let html = '<div style="display: grid; gap: 12px;">';
+                    data.votes.forEach(vote => {
+                        html += `
+                            <div style="padding: 12px; background: var(--md-sys-color-surface-variant); border-radius: 8px;">
+                                <div style="font-weight: 500; margin-bottom: 4px;">${vote.name} → ${vote.destination}</div>
+                                ${vote.notes ? `<div style="font-size: 14px; color: var(--md-sys-color-on-surface-variant);">"${vote.notes}"</div>` : ''}
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+
+                    summaryDiv.innerHTML = html;
+                    resultsDiv.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error loading votes:', error);
+            }
+        }
+
+        async function submitVote() {
+            const name = document.getElementById('voterName').value.trim();
+            const comments = document.getElementById('comments').value.trim();
+            const statusEl = document.getElementById('voteStatus');
+
+            if (!selectedDestination) {
+                statusEl.textContent = 'Please select a destination first!';
+                statusEl.style.color = 'var(--md-sys-color-error)';
+                statusEl.style.display = 'block';
+                return;
+            }
+
+            if (!name) {
+                statusEl.textContent = 'Please enter your name!';
+                statusEl.style.color = 'var(--md-sys-color-error)';
+                statusEl.style.display = 'block';
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/votes', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        destination: selectedDestination,
+                        notes: comments
+                    })
+                });
+
+                if (response.ok) {
+                    statusEl.textContent = '✅ Vote submitted successfully!';
+                    statusEl.style.color = 'var(--md-sys-color-success)';
+                    statusEl.style.display = 'block';
+
+                    // Clear form
+                    document.getElementById('comments').value = '';
+                    document.querySelectorAll('.vote-btn').forEach(btn => btn.classList.remove('selected'));
+                    selectedDestination = '';
+
+                    // Reload votes
+                    await loadVotes();
+                } else {
+                    throw new Error('Failed to submit vote');
+                }
+            } catch (error) {
+                console.error('Error submitting vote:', error);
+                statusEl.textContent = '❌ Error submitting vote. Please try again.';
+                statusEl.style.color = 'var(--md-sys-color-error)';
+                statusEl.style.display = 'block';
+            }
+        }
+
+        // Load votes when page loads
+        window.addEventListener('DOMContentLoaded', loadVotes);
+    </script>
+</body>
+</html>
