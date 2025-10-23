@@ -465,7 +465,7 @@
         }
         
         .voting-card {
-            background: var(--md-sys-color-surface-variant);
+            background: #eeecff;
             color: var(--md-sys-color-on-surface);
             padding: 32px;
             border-radius: 8px;
@@ -545,9 +545,25 @@
         .fab:hover {
             background: #1557b0;
         }
-        
+
         .fab:active {
             transform: scale(0.98);
+        }
+
+        .fab.success {
+            background: var(--md-sys-color-success);
+            cursor: default;
+        }
+
+        .fab.success:hover {
+            background: var(--md-sys-color-success);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
         }
         
         @media (max-width: 768px) {
@@ -676,7 +692,7 @@
                     <tbody>
                         <tr>
                             <td><strong>Image</strong></td>
-                            <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Todos_Santos%2C_Mexico_%28Unsplash%29.jpg/500px-Todos_Santos%2C_Mexico_%28Unsplash%29.jpg" alt="Baja California coastline" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
+                            <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Agua_transparente_de_la_Paz_Baja_California.jpg/500px-Agua_transparente_de_la_Paz_Baja_California.jpg" alt="La Paz bay transparent waters" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
                             <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Saguaro_cacti%2C_Saguaro_NP_%28RMD%29_%28ac324b3a-fb4b-4b06-b13e-1a08419520f8%29.jpg/500px-Saguaro_cacti%2C_Saguaro_NP_%28RMD%29_%28ac324b3a-fb4b-4b06-b13e-1a08419520f8%29.jpg" alt="Southwest desert" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
                             <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Templo_de_Santo_Domingo_de_Guzm%C3%A1n-_2023.jpg/500px-Templo_de_Santo_Domingo_de_Guzm%C3%A1n-_2023.jpg" alt="Oaxaca architecture" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
                             <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Beach_and_Ruins_at_Tulum.jpg/500px-Beach_and_Ruins_at_Tulum.jpg" alt="Tulum ruins" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"></td>
@@ -758,18 +774,13 @@
             <div class="info-card">
                 <h3>🎯 Expert Recommendation</h3>
                 <p><strong>Top Choice: Baja California Sur</strong></p>
-                <p>After extensive research, Baja perfectly matches your family's preferences: conversational activities (kayaking/snorkeling together), expert naturalist guides, intimate cultural experiences with local families, spectacular hiking, and once-in-a-lifetime wildlife encounters (swimming with whale sharks!). December is peak season with ideal weather, and it's easiest from California where 3 of 4 family members are based.</p>
+                <p>Baja matches our family's preferences: conversational activities (kayaking/snorkeling together), expert naturalist guides, intimate cultural experiences with local families, spectacular hiking, and once-in-a-lifetime wildlife encounters (swimming with whale sharks!). December is peak season with ideal weather, and it's easiest from California where 3 of 4 family members are based.</p>
                 <p style="margin-top: 12px;"><strong>Strong Runner-up: Southwest USA</strong> — True geographic middle ground, excellent hiking, deep cultural/historical immersion.</p>
             </div>
 
             <div class="voting-card">
                 <h3>🗳️ Cast Your Vote</h3>
                 <p style="margin-bottom: 20px; color: var(--md-sys-color-on-surface-variant);">Which destination excites you most?</p>
-
-                <div id="voteResults" style="margin-bottom: 24px; padding: 16px; background: white; border-radius: 8px; display: none;">
-                    <h4 style="margin-bottom: 12px; font-size: 16px;">Current Votes:</h4>
-                    <div id="voteSummary"></div>
-                </div>
 
                 <div class="vote-options">
                     <button class="vote-btn" onclick="selectVote(this, 'Baja California')">
@@ -800,8 +811,16 @@
                     <textarea id="comments" class="text-field" placeholder="E.g., 'Baja sounds amazing but worried about the glamping aspect...'"></textarea>
                 </div>
 
-                <button class="fab" onclick="submitVote()">Submit Vote</button>
+                <div class="button-group">
+                    <button class="fab" id="submitButton" onclick="submitVote()">Submit Vote</button>
+                    <button class="fab" id="seeVotesButton" onclick="showVotes()" style="display: none;">👀 See All Votes</button>
+                </div>
                 <p id="voteStatus" style="margin-top: 12px; font-size: 14px; display: none;"></p>
+
+                <div id="voteResults" style="margin-top: 24px; padding: 16px; background: white; border-radius: 8px; display: none;">
+                    <h4 style="margin-bottom: 12px; font-size: 16px;">Current Votes:</h4>
+                    <div id="voteSummary"></div>
+                </div>
             </div>
         </div>
         
@@ -1215,6 +1234,7 @@
         }
         
         let selectedDestination = '';
+        let hasVoted = false;
 
         function selectVote(button, destination) {
             document.querySelectorAll('.vote-btn').forEach(btn => {
@@ -1253,7 +1273,19 @@
             }
         }
 
+        function showVotes() {
+            loadVotes();
+        }
+
         async function submitVote() {
+            const submitButton = document.getElementById('submitButton');
+            const seeVotesButton = document.getElementById('seeVotesButton');
+
+            // If already voted, don't submit again
+            if (hasVoted) {
+                return;
+            }
+
             const name = document.getElementById('voterName').value.trim();
             const comments = document.getElementById('comments').value.trim();
             const statusEl = document.getElementById('voteStatus');
@@ -1290,13 +1322,22 @@
                     statusEl.style.color = 'var(--md-sys-color-success)';
                     statusEl.style.display = 'block';
 
+                    // Mark as voted
+                    hasVoted = true;
+                    localStorage.setItem('hasVoted', 'true');
+
+                    // Change submit button to success (green) and disable
+                    submitButton.classList.add('success');
+                    submitButton.textContent = '✅ Vote Submitted';
+
+                    // Show "See All Votes" button
+                    seeVotesButton.style.display = 'inline-block';
+
                     // Clear form
                     document.getElementById('comments').value = '';
+                    document.getElementById('voterName').value = '';
                     document.querySelectorAll('.vote-btn').forEach(btn => btn.classList.remove('selected'));
                     selectedDestination = '';
-
-                    // Reload votes
-                    await loadVotes();
                 } else {
                     throw new Error('Failed to submit vote');
                 }
@@ -1308,8 +1349,20 @@
             }
         }
 
-        // Load votes when page loads
-        window.addEventListener('DOMContentLoaded', loadVotes);
+        // Clear localStorage for testing - remove in production
+        // localStorage.removeItem('hasVoted');
+
+        // Check if user has already voted on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('hasVoted') === 'true') {
+                hasVoted = true;
+                const submitButton = document.getElementById('submitButton');
+                const seeVotesButton = document.getElementById('seeVotesButton');
+                submitButton.classList.add('success');
+                submitButton.textContent = '✅ Vote Submitted';
+                seeVotesButton.style.display = 'inline-block';
+            }
+        });
     </script>
 </body>
 </html>
